@@ -33,5 +33,5 @@ void selection_sort(int *array, size_t size)
 		i++;
 		min = i;
 		j = i + 1;
-	} while (i < size - 1);
+	} while (i < size - 2);
 }

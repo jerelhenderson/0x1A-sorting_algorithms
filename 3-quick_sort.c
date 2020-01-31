@@ -5,7 +5,7 @@
  * order using the Quick sort algorithm
  * @array: an array
  * @size: size of the array
- * return: pivot
+ * return: NULL
  */
 void quick_sort(int *array, size_t size)
 {

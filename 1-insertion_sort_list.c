@@ -1,38 +1,58 @@
 #include "sort.h"
 
+
 /**
- * insertion_sort_list - a function that sorts an array of integers in ascending
- * order using the insertion sort algorithm
- * @list: a linked list to sort
- * Return: NULL
+ * insertion_sort_list - sort DLL in asc order using insertion algorithm
+ *
+ * @list: given list
  */
 void insertion_sort_list(listint_t **list)
 {
-	size_t j;
-	listint_t *temp;
-	listint_t *swap;
-	size_t swapped = 0;
+	listint_t *current = NULL;
+	listint_t *temp = NULL;
+	listint_t *check = NULL;
 
-	temp = (*list);
-	swap = (*list);
-	/* for looping over listint_t and checking if swap occurred */
-	for (j = 1; &temp[j] != NULL || swapped == 0; j++)
+	current = *list;
+	temp = *list;
+	check = *list;
+
+	while (check->next != NULL)
 	{
-		swapped = 1;
-		/* if listint_t[0] is bigger than listint_t[1] and so on down the line */
-		if (&temp->n > &temp->next->n)
+		while (check->next != NULL)
 		{
-			swap = temp->next;
-			temp->next = temp;
-			temp = swap;
-			/* a swap happened so make swapped == 0 */ 
-			swapped = 0;
-                        /* print the listint_t after each swap */
-			while (&temp->n != NULL)
+			check = check->next;
+			check->prev = current;
+			if (current->n > check->n)
 			{
-				temp = temp->next;
- 				print_list(temp);
+				if (current->prev == NULL)
+				{
+					*list = check;
+					current = *list;
+					check = temp;
+					check->next = current->next;
+					check->prev = current;
+					current->next = check;
+					current->prev = NULL;
+					temp = current;
+				}
+				else
+				{
+					temp = temp->prev;
+					temp->next = check;
+					current->prev = check;
+					check->prev = temp;
+					current->next = check->next;
+					check->next = current;
+				}
+				print_list(*list);
+				current = *list;
+				check = *list;
+				temp = *list;
+				break;
 			}
+			check = current->next;
+			current = current->next;
+			temp = current;
 		}
 	}
 }

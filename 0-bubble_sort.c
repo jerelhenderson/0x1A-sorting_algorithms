@@ -1,43 +1,41 @@
 #include "sort.h"
 
 /**
- * bubble_sort - a function that sorts an array of integers in ascending
- * order using the Bubble sort algorithm
- * @array: an array to sort
- * @size: size of the array
- * Return: NULL
+ *
+ *
+ *
  */
 void bubble_sort(int *array, size_t size)
 {
 	size_t i;
 	size_t j;
-	size_t x;
-	size_t swapped = 0;
+	size_t pos;
+	size_t next;
+	size_t swapped;
 
-	/* for looping over array and checking if swap occurred */
-	for (j = 1; j <= size && swapped == 0; j++)
+	j = 0;
+	swapped = 0;
+
+	while (j < size - 1)
 	{
-		swapped = 1;
-		for (i = 1; i < size; i++)
+		i = 0;
+		while (i < size - 1)
 		{
-			/* if array[0] is bigger than array[1] and so on down the line */
-			if (array[i - 1] > array[i])
+			if (array[i] > array[i + 1])
 			{
-				/* swap without a temp variable */
-				array[i - 1] = array[i - 1] + array[i];
-				array[i] = array[i - 1] - array[i];
-				array[i - 1] = array[i - 1] - array[i];
-				/* a swap happened so make swapped == 0 */
-				swapped = 0;
-				for (x = 0; x < size; x++)
-				{
-					if (x < size - 1)
-						printf("%d, ", array[x]);
-					else
-						printf("%d", array[x]);
-				}
-				printf("\n");
+				pos = array[i + 1];
+				next = array[i];
+				array[i] = pos;
+				array[i + 1] = next;
+				print_array(array, size);
+				swapped = 1;
 			}
+			i++;
 		}
+		if (swapped == 0)
+			break;
+		swapped = 0;
 	}
+	j++;
 }
+

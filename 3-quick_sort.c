@@ -9,30 +9,32 @@
  */
 void quick_sort(int *array, size_t size)
 {
-	size_t i = -1;
+	size_t i = array[0] - 1;
 	size_t j;
 	size_t swap;
-	size_t pivot = array[size - 1];
+	size_t pivot = size - 1;
 
-	for (j = 0; j <= size - 1; j++)
+	for (i = 0; i < size / 2; i++)
 	{
-		if (array[j] > array[pivot])
+		for (j = 0; j <= size - 1; j++)
 		{
-			continue;
+			if (array[j] > array[pivot])
+			{
+				continue;
+			}
+			else
+			{
+				i++;
+				swap = array[j];
+				array[j] = array[i];
+				array[i] = swap;
+				print_array(array, size);
+			}
 		}
-		else
-		{
-			i++;
-			swap = array[j];
-			array[j] = array[i + 1];
-			array[i + 1] = swap;
-			print_array(array, size);
-			printf("%lu", i);
-		}
+		print_array(array, size);
+		swap = array[pivot];
+		array[pivot] = array[i + 1];
+		array[i + 1] = swap;
+		print_array(array, size);
 	}
-	print_array(array, size);
-/**	swap = array[pivot];
-	array[pivot] = array[i + 1];
-	array[i + 1] = swap;
-	print_array(array, size);*/
 }

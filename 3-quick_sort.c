@@ -9,33 +9,30 @@
  */
 void quick_sort(int *array, size_t size)
 {
-	size_t i;
-	size_t x;
-	size_t pivot = 0;
+	size_t i = -1;
+	size_t j;
+	size_t swap;
+	size_t pivot = array[size - 1];
 
-	do {
-		for (i = 0; i <= size - 1; i++)
+	for (j = 0; j <= size - 1; j++)
+	{
+		if (array[j] > array[pivot])
 		{
-			if (array[i] > array[size - 1])
-				continue;
-			else
-			{
-				array[pivot] = array[pivot] + array[i];
-				array[i] = array[pivot] - array[i];
-				array[pivot] = array[pivot] - array[i];
-				for (x = 0; x < size; x++)
-				{
-					if (x < size - 1)
-						printf("%d, ", array[x]);
-					else
-						printf("%d", array[x]);
-				}
-				printf("\n");
-				pivot++;
-			}
+			continue;
 		}
-	} while ();
-	array[pivot] = array[pivot] + array[size - 1];
-	array[size - 1] = array[pivot] - array[size - 1];
-	array[pivot] = array[pivot] - array[size - 1];
+		else
+		{
+			i++;
+			swap = array[j];
+			array[j] = array[i + 1];
+			array[i + 1] = swap;
+			print_array(array, size);
+			printf("%lu", i);
+		}
+	}
+	print_array(array, size);
+/**	swap = array[pivot];
+	array[pivot] = array[i + 1];
+	array[i + 1] = swap;
+	print_array(array, size);*/
 }

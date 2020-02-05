@@ -7,7 +7,7 @@
  * @size: size of the array
  * return: NULL
  */
-void quick_sort(int *array, size_t size)
+void quick_sort_helper(int *array, size_t size)
 {
 	size_t i;
 	size_t j;
@@ -37,6 +37,12 @@ void quick_sort(int *array, size_t size)
 			print_array(array, size);
 		}
 	}
-	if (array[0] < array[size - 1])
+	if (array[i] < array[size - 1])
+	{
 		quick_sort(array, size/2);
+	}
+	if (array[i] > array[size - 1])
+	{
+		quick_sort(array, (size/2) + 1);
+	}
 }

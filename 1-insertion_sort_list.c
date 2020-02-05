@@ -8,18 +8,15 @@
  */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *current, *temp, *check;
-	
-	current = *list;
-	check = *list;
-	temp = current;
+	listint_t *current, *temp = *list;
+	listint_t *check = *list;
 
 	if (*list == NULL || list == NULL)
 		return;
+
 	while (check->next != NULL)
 	{
 		current = *list;
-		check = *list;
 		while (check->next != NULL)
 		{
 			check = check->next;
@@ -52,4 +49,3 @@ void insertion_sort_list(listint_t **list)
 		}
 	}
 }
-
